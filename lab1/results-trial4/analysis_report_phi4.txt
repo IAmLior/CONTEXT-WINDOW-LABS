@@ -1,0 +1,48 @@
+================================================================================
+NEEDLE-IN-HAYSTACK EXPERIMENT - ANALYSIS REPORT
+================================================================================
+
+OVERALL STATISTICS
+--------------------------------------------------------------------------------
+Total Documents Tested: 15
+Overall Accuracy: 100.0%
+
+ACCURACY BY POSITION
+--------------------------------------------------------------------------------
+START    : 100.0% (5/5 correct)
+MIDDLE   : 100.0% (5/5 correct)
+END      : 100.0% (5/5 correct)
+
+KEY FINDINGS
+--------------------------------------------------------------------------------
+Best Position: START (100.0%)
+Worst Position: START (100.0%)
+Accuracy Drop (Best to Worst): 0.0%
+
+LOST-IN-THE-MIDDLE EFFECT
+--------------------------------------------------------------------------------
+Detected: NO
+Average Edge Accuracy (Start + End): 100.0%
+Middle Accuracy: 100.0%
+✓  No significant middle penalty detected.
+
+INTERPRETATION
+--------------------------------------------------------------------------------
+This experiment demonstrates how LLMs process long contexts:
+
+1. POSITION BIAS: The model's ability to retrieve information varies
+   significantly based on where that information appears in the input.
+
+2. EDGE ADVANTAGE: Facts at the beginning and end of documents are
+   more likely to be recalled accurately.
+
+3. MIDDLE PENALTY: Information buried in the middle of long contexts
+   is more likely to be missed or incorrectly retrieved.
+
+IMPLICATIONS:
+- When designing prompts, place critical information at the start or end
+- For RAG systems, consider position when ranking retrieved chunks
+- Long documents may benefit from summarization or structured retrieval
+- Context window size alone doesn't guarantee perfect recall
+
+================================================================================

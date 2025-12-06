@@ -1,0 +1,10 @@
+# Azure OpenAI Helper Dependencies
+openai>=1.0.0
+python-dotenv>=1.0.0
+
+# Data visualization
+matplotlib>=3.5.0
+
+# Optional: For development and testing
+pytest>=7.0.0
+pytest-cov>=4.0.0
