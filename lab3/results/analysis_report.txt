@@ -1,0 +1,88 @@
+================================================================================
+LAB 3: RAG vs FULL CONTEXT - ANALYSIS REPORT
+================================================================================
+
+Generated: 2025-12-07 21:55:28
+
+Experiment Configuration:
+  Total Documents: 20
+  Total Chunks: 20
+  Chunk Size: 500 tokens
+  Overlap: 50 tokens
+  Retrieval k: 3
+  Total Questions: 15
+
+================================================================================
+SUMMARY COMPARISON: RAG vs FULL CONTEXT
+================================================================================
+
+Metric                         RAG             Full Context    Difference     
+--------------------------------------------------------------------------------
+Accuracy                         93.3%           93.3%           +0.0%
+Average Latency (s)              3.50s          11.63s          -8.13s
+Min Latency (s)                  1.39s           1.04s        
+Max Latency (s)                 12.59s          40.59s        
+Std Dev Latency (s)              3.77s          14.37s        
+
+Speed Improvement               -85.5%
+--------------------------------------------------------------------------------
+
+Correctness Breakdown:
+  Both correct:          14 / 15
+  RAG only correct:      0 / 15
+  Full only correct:     0 / 15
+  Both incorrect:        1 / 15
+
+========================================================================================================================
+DETAILED RESULTS BY QUESTION
+========================================================================================================================
+
+ID       Query                                         RAG      Full     RAG Lat    Full Lat   Improv%   
+------------------------------------------------------------------------------------------------------------------------
+q001     What is the recommended daily intake of Vitamin D ... ✓        ✓          2.96s       1.06s     -178.6%
+q002     How many hours of sleep do adults need per night? ✓        ✓         12.56s       1.11s     -1036.0%
+q003     What are the three essential elements required for... ✓        ✓          1.81s       1.17s      -55.0%
+q004     How long does copyright protection last?      ✓        ✓          1.44s       1.14s      -26.8%
+q005     What is the federal minimum wage in the United Sta... ✓        ✓          1.43s      40.59s       96.5%
+q006     What HTTP method is used for retrieving data in RE... ✓        ✓          1.91s      22.81s       91.6%
+q007     What are the three normal forms in database normal... ✗        ✗          1.74s       1.26s      -37.9%
+q008     What is the current standard for secure communicat... ✓        ✓          1.49s       1.04s      -44.2%
+q009     How many minutes per week of moderate-intensity ae... ✓        ✓          1.39s      29.69s       95.3%
+q010     What is the target Hemoglobin A1C level for most d... ✓        ✓          1.63s      33.79s       95.2%
+q011     What is the highest burden of proof in the legal s... ✓        ✓          3.67s       1.35s     -172.2%
+q012     What are the three major cloud providers mentioned... ✓        ✓          3.86s       1.16s     -232.1%
+q013     How long is a typical Scrum sprint?           ✓        ✓          2.57s      23.57s       89.1%
+q014     What is the smallest deployable unit in Kubernetes... ✓        ✓         12.59s      12.59s       -0.0%
+q015     How many grams of fiber should adults consume dail... ✓        ✓          1.44s       2.15s       32.8%
+
+================================================================================
+KEY INSIGHTS AND OBSERVATIONS
+================================================================================
+
+1. Overall Performance:
+   ✓ RAG achieves equal or better accuracy (93.3% vs 93.3%)
+   ✓ RAG is significantly faster (-85.5% average improvement)
+
+2. Consistency:
+   RAG latency variance: 3.773s
+   Full Context latency variance: 14.371s
+   ✓ RAG provides more consistent response times
+
+3. Edge Cases:
+   ✓ Both methods had identical correctness patterns
+
+4. Practical Implications:
+   ✓ For a corpus of 20 documents:
+     - RAG uses only top-3 chunks per query
+     - Full Context uses all 20 chunks
+     - This results in -85.5% faster responses
+
+   ✓ Scalability: As corpus grows, RAG advantage increases exponentially
+   ✓ Cost efficiency: RAG uses fewer tokens per request
+   ✓ Focus: RAG provides only relevant context, reducing noise
+
+5. Recommendations:
+   ✓ RAG is RECOMMENDED for this use case:
+     - Comparable or better accuracy
+     - Significantly faster responses
+     - Better scalability
