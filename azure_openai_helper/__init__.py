@@ -6,6 +6,6 @@ Loads configuration from environment variables and provides a clean interface
 for querying the LLM.
 """
 
-from .llm_client import llm_query, validate_configuration
+from .llm_client import llm_query, validate_configuration, get_client
 
-__all__ = ['llm_query', 'validate_configuration']
+__all__ = ['llm_query', 'validate_configuration', 'get_client']

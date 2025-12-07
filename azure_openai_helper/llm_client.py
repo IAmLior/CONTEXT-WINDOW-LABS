@@ -83,21 +83,63 @@ def validate_configuration() -> Dict[str, any]:
 
 def get_available_models() -> Dict[str, str]:
     """
-    Get dictionary of available model deployments.
+    Get a dictionary of available models and their deployment names.
     
     Returns:
-        Dict with model aliases mapped to deployment names
+        dict: Map of model identifiers to deployment names
     """
     config = _load_configuration()
     
     models = {
-        "primary": config['AZURE_OPENAI_DEPLOYMENT_NAME']
+        'primary': config['AZURE_OPENAI_DEPLOYMENT_NAME']
     }
     
     if config.get('has_secondary_model'):
-        models["secondary"] = config['AZURE_OPENAI_DEPLOYMENT_NAME_SECONDARY']
+        models['secondary'] = config['AZURE_OPENAI_DEPLOYMENT_NAME_SECONDARY']
     
     return models
+
+
+def get_client(model: Optional[str] = None) -> AzureOpenAI:
+    """
+    Get an AzureOpenAI client instance for direct API access.
+    Useful for embeddings, custom calls, etc.
+    
+    Args:
+        model: Which model configuration to use
+               - None (default): Uses primary model
+               - "primary": Uses primary model
+               - "secondary": Uses secondary model
+               
+    Returns:
+        AzureOpenAI: Configured client instance
+        
+    Raises:
+        ConfigurationError: If required environment variables are missing
+        ValueError: If model is invalid
+    """
+    config = _load_configuration()
+    
+    # Determine which configuration to use
+    if model is None or model == "primary":
+        endpoint = config['AZURE_OPENAI_ENDPOINT']
+        api_key = config['AZURE_OPENAI_API_KEY']
+    elif model == "secondary":
+        if not config.get('has_secondary_model'):
+            raise ValueError("Secondary model configuration is not available")
+        endpoint = config['AZURE_OPENAI_ENDPOINT_SECONDARY']
+        api_key = config['AZURE_OPENAI_API_KEY_SECONDARY']
+    else:
+        # Assume it's a deployment name, use primary config
+        endpoint = config['AZURE_OPENAI_ENDPOINT']
+        api_key = config['AZURE_OPENAI_API_KEY']
+    
+    # Create and return client
+    return AzureOpenAI(
+        azure_endpoint=endpoint,
+        api_key=api_key,
+        api_version=config['AZURE_OPENAI_API_VERSION']
+    )
 
 
 def llm_query(
