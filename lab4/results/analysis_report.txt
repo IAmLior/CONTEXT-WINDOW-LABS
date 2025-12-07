@@ -1,0 +1,209 @@
+================================================================================
+LAB 4: CONTEXT ENGINEERING STRATEGIES - ANALYSIS REPORT
+================================================================================
+
+Generated: 2025-12-07 23:32:57
+Scenario: detective_investigation
+Model: gpt-4o-mini
+Total Steps: 10
+
+================================================================================
+OVERALL PERFORMANCE SUMMARY
+================================================================================
+
+SELECT Strategy:
+  Accuracy: 9/10 correct (90.0%)
+  Avg Context Tokens: 161
+  Avg Processing Time: 7.69s
+
+COMPRESS Strategy:
+  Accuracy: 10/10 correct (100.0%)
+  Avg Context Tokens: 329
+  Avg Processing Time: 5.85s
+
+WRITE Strategy:
+  Accuracy: 7/10 correct (70.0%)
+  Avg Context Tokens: 120
+  Avg Processing Time: 8.03s
+
+================================================================================
+STEP-BY-STEP BREAKDOWN
+================================================================================
+
+Step 1:
+  Question: What crime was committed?
+  Ground Truth: A break-in and theft of a laptop from an office
+    [SELECT] ✓ CORRECT
+      Answer: Burglary.
+      Tokens: 55
+    [COMPRESS] ✓ CORRECT
+      Answer: Burglary.
+      Tokens: 55
+    [WRITE] ✓ CORRECT
+      Answer: Burglary.
+      Tokens: 67
+
+Step 2:
+  Question: Who is the suspect based on witness description?
+  Ground Truth: A person wearing a red jacket with a backpack
+    [SELECT] ✓ CORRECT
+      Answer: The suspect is a person in a red jacket carrying a large backpack, seen near the building at 7:30 AM.
+      Tokens: 111
+    [COMPRESS] ✓ CORRECT
+      Answer: The suspect is a person in a red jacket carrying a large backpack.
+      Tokens: 111
+    [WRITE] ✓ CORRECT
+      Answer: The suspect is a person in a red jacket carrying a large backpack, seen near the building at 7:30 AM.
+      Tokens: 125
+
+Step 3:
+  Question: What time did the break-in occur?
+  Ground Truth: 7:45 AM on Monday
+    [SELECT] ✓ CORRECT
+      Answer: The break-in occurred at 7:45 AM.
+      Tokens: 171
+    [COMPRESS] ✓ CORRECT
+      Answer: The break-in occurred at 7:45 AM.
+      Tokens: 171
+    [WRITE] ✓ CORRECT
+      Answer: The break-in occurred at approximately 7:45 AM.
+      Tokens: 124
+
+Step 4:
+  Question: What is the name of the identified suspect?
+  Ground Truth: Sarah Chen
+    [SELECT] ✗ INCORRECT
+      Answer: The suspect's name is not identified in the provided information.
+      Tokens: 171
+    [COMPRESS] ✓ CORRECT
+      Answer: Sarah Chen
+      Tokens: 236
+    [WRITE] ✗ INCORRECT
+      Answer: The suspect's name has not been identified.
+      Tokens: 125
+
+Step 5:
+  Question: What was Sarah Chen's previous job at the company?
+  Ground Truth: Accountant
+    [SELECT] ✓ CORRECT
+      Answer: Sarah Chen was an accountant.
+      Tokens: 180
+    [COMPRESS] ✓ CORRECT
+      Answer: Sarah Chen was an accountant.
+      Tokens: 296
+    [WRITE] ✓ CORRECT
+      Answer: Accountant.
+      Tokens: 117
+
+Step 6:
+  Question: Where did Sarah buy the crowbar?
+  Ground Truth: Hardware store on Elm Street
+    [SELECT] ✓ CORRECT
+      Answer: Sarah bought the crowbar at the hardware store on Elm Street.
+      Tokens: 183
+    [COMPRESS] ✓ CORRECT
+      Answer: Sarah bought the crowbar at the hardware store on Elm Street.
+      Tokens: 355
+    [WRITE] ✓ CORRECT
+      Answer: Sarah bought the crowbar at the store on Elm Street.
+      Tokens: 128
+
+Step 7:
+  Question: Where did Sarah Chen move to?
+  Ground Truth: Seattle
+    [SELECT] ✓ CORRECT
+      Answer: Seattle
+      Tokens: 184
+    [COMPRESS] ✓ CORRECT
+      Answer: Seattle.
+      Tokens: 415
+    [WRITE] ✓ CORRECT
+      Answer: Seattle.
+      Tokens: 134
+
+Step 8:
+  Question: How much money did Sarah withdraw recently?
+  Ground Truth: $15,000
+    [SELECT] ✓ CORRECT
+      Answer: $15,000
+      Tokens: 199
+    [COMPRESS] ✓ CORRECT
+      Answer: Sarah withdrew $15,000 recently.
+      Tokens: 490
+    [WRITE] ✓ CORRECT
+      Answer: $15,000
+      Tokens: 135
+
+Step 9:
+  Question: What information was on the stolen laptop?
+  Ground Truth: Sensitive financial documents showing evidence of company fraud
+    [SELECT] ✓ CORRECT
+      Answer: Sensitive financial documents allegedly showing evidence of company fraud discovered by Sarah before her termination.
+      Tokens: 171
+    [COMPRESS] ✓ CORRECT
+      Answer: The stolen laptop contained sensitive financial documents allegedly showing evidence of company fraud that Sarah had discovered before her termination.
+      Tokens: 550
+    [WRITE] ✗ INCORRECT
+      Answer: Sensitive financial documents.
+      Tokens: 122
+
+Step 10:
+  Question: Why did Sarah Chen commit the break-in?
+  Ground Truth: To obtain evidence of fraud to clear her name after being wrongfully terminated
+    [SELECT] ✓ CORRECT
+      Answer: Sarah Chen committed the break-in to obtain evidence of fraud to clear her name, claiming her termination was retaliation for reporting suspicious accounting practices.
+      Tokens: 188
+    [COMPRESS] ✓ CORRECT
+      Answer: Sarah Chen committed the break-in to retrieve evidence of company fraud from the laptop, which she believed would help clear her name after being terminated in retaliation for reporting suspicious accounting practices.
+      Tokens: 614
+    [WRITE] ✗ INCORRECT
+      Answer: Sarah Chen committed the break-in as an act of retaliation after being fired, which she claims was due to reporting suspicious accounting practices.
+      Tokens: 122
+
+================================================================================
+KEY INSIGHTS
+================================================================================
+
+1. Best Overall Accuracy: COMPRESS (100.0%)
+2. Most Context-Efficient: WRITE (120 avg tokens)
+
+SELECT Performance:
+  First half (steps 1-5): 80.0% accuracy
+  Second half (steps 6+): 100.0% accuracy
+  Improvement: 25.0%
+
+COMPRESS Performance:
+  First half (steps 1-5): 100.0% accuracy
+  Second half (steps 6+): 100.0% accuracy
+  Improvement: -0.0%
+
+WRITE Performance:
+  First half (steps 1-5): 80.0% accuracy
+  Second half (steps 6+): 60.0% accuracy
+  Degradation: 25.0%
+
+================================================================================
+STRATEGY TRADE-OFFS
+================================================================================
+
+SELECT (RAG-based retrieval):
+  ✓ Retrieves only relevant context
+  ✓ Good for focused questions
+  ✗ Requires embedding infrastructure
+  ✗ May miss connections between distant facts
+
+COMPRESS (Summarization):
+  ✓ Simple to implement
+  ✓ Handles long histories
+  ✗ May lose important details in summary
+  ✗ Summary quality depends on LLM
+
+WRITE (External scratchpad):
+  ✓ Maintains structured facts
+  ✓ Good for accumulating knowledge
+  ✗ Requires fact extraction step
+  ✗ Fact quality depends on extraction accuracy
+
+================================================================================
+END OF REPORT
+================================================================================
