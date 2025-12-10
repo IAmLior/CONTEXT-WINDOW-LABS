@@ -3031,6 +3031,25 @@ Results are organized in lab-specific directories:
 - `lab3/results/`
 - `lab4/results/`
 
+Visualizations include:
+### lab 1
+![vis](/lab1/results-trial4/accuracy_by_position.png)
+![vis](/lab1/results/accuracy_by_position_trial5_final.png)
+### lab 2
+![vis](/lab2/results/phi4_mini_analysis.png)
+### lab 3
+![vis](/lab3/results/accuracy_comparison.png)
+![vis](/lab3/results/correctness_heatmap.png)
+![vis](/lab3/results/latency_comparison.png)
+![vis](/lab3/results/latency_improvement_distribution.png)
+![vis](/lab3/results/latency_per_question.png)
+### lab 4
+![vis](/lab4/results/accuracy_heatmap.png)
+![vis](/lab4/results/accuracy_over_time.png)
+![vis](/lab4/results/context_tokens_over_time.png)
+![vis](/lab4/results/cumulative_accuracy.png)
+![vis](/lab4/results/overall_comparison.png)
+
 ## 🛠️ Development
 
 ### Requirements
