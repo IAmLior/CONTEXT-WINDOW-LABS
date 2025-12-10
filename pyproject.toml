@@ -1,0 +1,74 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "context-window-labs"
+version = "0.1.0"
+description = "A collection of labs testing LLM context window limitations and strategies"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "MIT"}
+authors = [
+    {name = "Context Window Labs Team"},
+]
+keywords = ["llm", "context-window", "rag", "azure-openai", "experiments"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+
+dependencies = [
+    "openai>=1.0.0",
+    "python-dotenv>=1.0.0",
+    "matplotlib>=3.5.0",
+    "seaborn>=0.12.0",
+    "pandas>=1.5.0",
+    "numpy>=1.24.0",
+    "scikit-learn>=1.3.0",
+    "tiktoken>=0.5.0",
+    "chromadb>=0.4.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+    "black>=23.0.0",
+    "flake8>=6.0.0",
+    "mypy>=1.0.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/IAmLior/CONTEXT-WINDOW-LABS"
+Repository = "https://github.com/IAmLior/CONTEXT-WINDOW-LABS"
+Issues = "https://github.com/IAmLior/CONTEXT-WINDOW-LABS/issues"
+
+[tool.setuptools]
+py-modules = ["context_window_labs"]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["azure_openai_helper*", "lab1*", "lab2*", "lab3*", "lab4*"]
+exclude = ["tests*", "*.tests*"]
+
+[tool.setuptools.package-data]
+"*" = ["*.json", "*.md", "*.txt"]
+
+[tool.black]
+line-length = 100
+target-version = ['py38', 'py39', 'py310', 'py311']
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py", "*_test.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
